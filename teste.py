@@ -64,6 +64,7 @@ SCHEMAS = [
         """
     }
 ]
+
 # gerar embedings do schema
 
 print("Gerando embeddings dos schemas...")
@@ -74,7 +75,7 @@ for schema in SCHEMAS:
         schema["texto"]
     )
 
-# NLP
+# NLP - Tokenizar e lematizar a pergunta do usuario
 
 def analisar_pergunta(pergunta):
 
@@ -127,7 +128,7 @@ def analisar_pergunta(pergunta):
         "entidades": entidades
     }
 
-# Montar prompt
+# Montar prompt que sera integrado com modelo qwen
 
 def construir_prompt(
     pergunta,
@@ -166,7 +167,7 @@ SQL:
 """
 
     return prompt
-# Recuperação semantica
+# Recuperação semantica - Comparar embeddings da pergunta do usuario com as embeddings de cada esquema
 
 def buscar_schema_relevante(pergunta):
 
@@ -199,7 +200,7 @@ def buscar_schema_relevante(pergunta):
 
 
 
-# Pipeline
+# Pipeline da execeução principal
 
 def pipeline():
 
